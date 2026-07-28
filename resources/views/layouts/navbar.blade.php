@@ -11,7 +11,7 @@
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('dasboard') ? 'active' : '' }}" aria-current="page"
+                    <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page"
                         href="{{ route('dashboard') }}">Dashboard</a>
                 </li>
                 {{-- Pindah ke sini, di dalam ul --}}
@@ -21,12 +21,12 @@
                 </li>
                 <li class="nav-item">
                     <a
-                        class="nav-link {{ Request::is('admin/produk') ? 'active' : '' }}"href="{{ route('produk.index') }}">Produk</a>
+                        class="nav-link {{ Request::is('admin/produk*') ? 'active' : '' }}" href="{{ route('admin.produk.index') }}">Produk</a>
                 </li>
            
             <li class="nav-item">
                 <a
-                    class="nav-link {{ Request::is('penjualan') ? 'active' : '' }}"href="{{ route('penjualan.index') }}">Penjualan</a>
+                    class="nav-link {{ Request::is('admin/penjualan*') ? 'active' : '' }}" href="{{ route('admin.penjualan.index') }}">Penjualan</a>
             </li>
              </ul>
 

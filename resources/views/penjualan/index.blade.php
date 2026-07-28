@@ -16,9 +16,9 @@
 
 <h1>Halaman Penjualan</h1>
 
-    <a href="{{ route('penjualan.create') }}" class="btn btn-primary mb-3">Create</a>
+    <a href="{{ route('admin.penjualan.create') }}" class="btn btn-primary mb-3">Create</a>
 
-    <form action="{{ route('penjualan.index') }}" method="GET" class="mb-3">
+    <form action="{{ route('admin.penjualan.index') }}" method="GET" class="mb-3">
         <div class="input-group">
             <input type="text" name="search" value="{{ request()->search }}" class="form-control"
                 placeholder="Search penjualan">
@@ -27,6 +27,7 @@
             </button>
         </div>
     </form>
+
     <table class="table">
         <thead>
             <tr>
@@ -45,34 +46,22 @@
                     <th scope="row">{{ $sales->firstItem() + $loop->index }}</th>
                     <td>{{ $sale->created_at->translatedFormat('d-m-Y H:i:s') }}</td>
                     <td>{{ $sale->user->name }}</td>
-                    <td>Rp. {{ $sale->total_pembayaran }}</td>
+                    <td>Rp. {{ number_format($sale->total_pembayaran, 0, ',', '.') }}</td>
                     <td>{{ $sale->metode_pembayaran }}</td>
                     <td>{{ $sale->status }}</td>
-                    <td class="d-flax gap-1">
-                        <a href="" class="btn btn-primary">Detail</a>
-                        @can('view', $sale)
-                        ||
-                        <a href="{{ route('penjualan.edit', $sale) }}" class="btn btn-warning">Edit</a>
-                        @endcan
-                        @can('delete', $sale)
-                        ||
-                        <form action="{{ route('penjualan.destroy', $sale->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger"
-                                onclick="return confirm('Apakah anda yakin akan menghapus penjualan ini?')">
-                                Hapus
-                            </button>
-                        </form>
-                        @endcan
+                    
+                    {{-- Kolom Aksi hanya menampilkan tombol Detail --}}
+                    <td>
+                        <a href="{{ route('admin.penjualan.show', $sale->id) }}" class="btn btn-sm btn-primary">Detail</a>
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6">Data Tidak Ditemukan</td>
+                    <td colspan="7" class="text-center">Data Tidak Ditemukan</td>
                 </tr>
             @endforelse
         </tbody>
     </table>
+
     {{ $sales->links() }}
 @endsection

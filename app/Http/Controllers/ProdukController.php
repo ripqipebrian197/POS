@@ -60,7 +60,7 @@ class ProdukController extends Controller
 
         Produk::create($data);
 
-        return redirect()->route('.produk.index')->with('success', 'Product created successfully.');
+        return redirect()->route('admin.produk.index')->with('success', 'Product created successfully.');
     }
 
     /**
@@ -114,7 +114,7 @@ class ProdukController extends Controller
 
         $produk->update($data);
 
-        return redirect()->route('produk.index')->with('success', 'Product updated successfully.');
+        return redirect()->route('admin.produk.index')->with('success', 'Product updated successfully.');
     }
 
     /**
@@ -123,7 +123,7 @@ class ProdukController extends Controller
     public function destroy(Produk $produk)
     {
         $this->authorize('delete', $produk);
-        
+
         if ($produk->foto && Storage::disk('public')->exists($produk->foto)) {
             Storage::disk('public')->delete($produk->foto);
         }

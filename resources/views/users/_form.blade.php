@@ -1,5 +1,3 @@
-@csrf
-
 <div class="mb-3">
     <label class="form-label">Nama</label>
     <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
@@ -24,7 +22,7 @@
 
 <div class="mb-3">
     <label class="form-label">Password</label>
-    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
+    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Kosongkan jika tidak diubah">
     @error('password')
         <div class="invalid-feedback">
             {{ $message }}
@@ -38,7 +36,7 @@
         <option value="">-- Pilih Role --</option>
         @foreach ($roles as $role)
             <option value="{{ $role->id }}"
-                 @selected(old('role_id', $user->role_id ?? '') == $role->id)>
+                @selected(old('role_id', $user->role_id ?? '') == $role->id)>
                 {{ ucfirst($role->name) }}
             </option>
         @endforeach
@@ -50,5 +48,5 @@
     @enderror
 </div>
 
-<button class="btn btn-success">Simpan</button>
-<a href="{{ route('admin.users') }}" class="btn btn-secondary">Kembali</a>
+<button type="submit" class="btn btn-success">Simpan</button>
+<a href="/admin/users" class="btn btn-secondary">Kembali</a>

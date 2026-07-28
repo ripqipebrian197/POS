@@ -122,7 +122,6 @@ class PenjualanController extends Controller
 
         DB::transaction(function () use ($penjualan, $request) {
 
-            // 💾 Hitung ulang total (anti manipulasi)
             $total = $penjualan->itemPenjualan()->sum('subtotal');
 
             $penjualan->update([
@@ -133,17 +132,16 @@ class PenjualanController extends Controller
         });
 
         return redirect()
-            ->route('penjualan.index')
+            ->route('admin.penjualan.index')
             ->with('success', 'Transaksi berhasil diselesaikan');
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Penjualan $penjualan)
     {
         $this->authorize('delete', $penjualan);
-        
+
         // ! Pastikan hanya transaksi OPEN
         if ($penjualan->status !== 'OPEN') {
             return redirect()->route('penjualan.create')->with('errors', 'Transaksi sudah selesai tidak bisa dibatalkan');
@@ -153,19 +151,17 @@ class PenjualanController extends Controller
         DB::transaction(function () use ($penjualan) {
 
             foreach ($penjualan->itemPenjualan as $item) {
-                // 🔼 kembalikan stok
+
                 $item->produk->increment('stok', $item->kuantitas);
             }
 
-            // ❌ hapus item
             $penjualan->itemPenjualan()->delete();
 
-            // ❌ hapus penjualan
+
             $penjualan->delete();
         });
-
         return redirect()
-            ->route('penjualan.index')
+            ->route('admin.penjualan.index')
             ->with('success', 'Transaksi berhasil dibatalkan');
     }
 }

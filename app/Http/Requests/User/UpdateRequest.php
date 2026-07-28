@@ -18,32 +18,35 @@ class UpdateRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, ValidationRule|array<mixed>|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-{
-    return [
-        'name' => 'required|string|max:100',
-        'email' => [
-            'required',
-            'email',
-            Rule::unique('users')->ignore($this->user->id),
-        ],
-        'password' => 'nullable|min:8',
-        'role_id' => 'required',
-        'is_active' => 'boolean'
-    ];
-}
+    {
+        return [
+            'name' => 'required|string|max:100',
+            'email' => [
+                'required',
+                'email',
+                // Perbaikan 1: Ambil parameter user dari route
+                Rule::unique('users')->ignore($this->route('user')),
+            ],
+            'password' => 'nullable|min:8',
+            'role_id' => 'required',
+            'is_active' => 'boolean'
+        ];
+    }
 
-public function messages(): array
-{
-    return [
-        'name.required'     => 'Nama Wajib diisi.',
-        'name.max'          => 'Maksimal panjang nama 100 karakter.',
-        'email.required'    => 'Email wajib diisi.',
-        'email.email'       => 'Format email tidak valid.',
-        'password.min'      => 'Password minimal :min karakter.',
-        'role.required'     => 'Role wajib diisi.'
-    ];
-}
+    public function messages(): array
+    {
+        return [
+            'name.required'     => 'Nama Wajib diisi.',
+            'name.max'          => 'Maksimal panjang nama 100 karakter.',
+            'email.required'    => 'Email wajib diisi.',
+            'email.email'       => 'Format email tidak valid.',
+            'email.unique'      => 'Email sudah digunakan oleh user lain.',
+            'password.min'      => 'Password minimal :min karakter.',
+            // Perbaikan 2: Sesuaikan key dengan 'role_id'
+            'role_id.required'  => 'Role wajib diisi.'
+        ];
+    }
 }

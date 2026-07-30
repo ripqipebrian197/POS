@@ -37,7 +37,7 @@ class ProdukController extends Controller
     public function create()
     {
         $this->authorize('create', Produk::class);
-
+        
         return view('produk.create');
     }
 

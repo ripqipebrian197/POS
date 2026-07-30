@@ -18,4 +18,4 @@ class PenjualanPolicy
         return $user->role->name === 'admin'
             && $penjualan->status === 'OPEN';
     }
-}   
+}

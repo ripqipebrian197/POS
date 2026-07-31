@@ -37,7 +37,7 @@ class ProdukController extends Controller
     public function create()
     {
         $this->authorize('create', Produk::class);
-        
+
         return view('produk.create');
     }
 
@@ -117,6 +117,7 @@ class ProdukController extends Controller
         return redirect()->route('admin.produk.index')->with('success', 'Product updated successfully.');
     }
 
+
     /**
      * Remove the specified resource from storage.
      */
@@ -130,6 +131,6 @@ class ProdukController extends Controller
 
         $produk->delete();
 
-        return redirect()->route('produk.index')->with('success', 'Product deleted successfully.');
+        return redirect()->route('admin.produk.index')->with('success', 'Product deleted successfully.');
     }
 }

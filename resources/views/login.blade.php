@@ -7,7 +7,6 @@
 <!--batas awal isi konten-->
 @section('content')
 
-
 <div class="card text-center position-absolute top-50 start-50 translate-middle" style="width: 18rem;">
   <div class="card-header">login POS</div>
   <div class="card-body">
@@ -31,8 +30,6 @@
 </form>
   </div>
 </div>
-
-
 
 <!--batas Akhir isi konten-->
 @endsection

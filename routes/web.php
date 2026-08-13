@@ -8,32 +8,37 @@ use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UserController;
 
-// route yang bisa diakses ketika user belum login
+// Route yang bisa diakses ketika user belum login (Guest)
 Route::middleware('guest')->group(function () {
+    // Disesuaikan dengan nama method 'index' di AuthController
     Route::get('/login', [AuthController::class, 'index'])->name('login');
-    Route::post('/auth', [AuthController::class, 'auth'])->name('auth');
+    Route::post('/login', [AuthController::class, 'login']);
 });
 
-// route yang bisa diakses ketika user sudah login
+// Route yang bisa diakses ketika user sudah login (Auth)
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
-        Route::get('/users', [UserController::class, 'index'])->name('users');
-        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-        Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
-        Route::get('/users/edit/{user}', [UserController::class, 'edit'])->name('users.edit');
+    // Penggabungan Prefix Admin agar tidak bentrok
+    Route::prefix('admin')->name('admin.')->group(function () {
         
-        // DIUBAH DI SINI: Ubah post menjadi put
-        Route::put('/users/update/{user}', [UserController::class, 'update'])->name('users.update');
-        
-        Route::delete('/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-    });
+        // Khusus Role ADMIN saja
+        Route::middleware('role:admin')->group(function () {
+            Route::get('/users', [UserController::class, 'index'])->name('users');
+            Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+            Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+            Route::get('/users/edit/{user}', [UserController::class, 'edit'])->name('users.edit');
+            Route::put('/users/update/{user}', [UserController::class, 'update'])->name('users.update');
+            Route::delete('/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+        });
 
-    Route::middleware('role:admin,kasir')->prefix('admin')->name('admin.')->group(function () {
-        Route::resource('/produk', ProdukController::class);
-        Route::resource('/penjualan', PenjualanController::class); 
-        Route::resource('/itempenjualan', ItemPenjualanController::class);
+        // Bisa diakses oleh ADMIN dan KASIR
+        Route::middleware('role:admin,kasir')->group(function () {
+            Route::resource('/produk', ProdukController::class);
+            Route::resource('/penjualan', PenjualanController::class); 
+            Route::resource('/itempenjualan', ItemPenjualanController::class);
+        });
+
     });
 });

@@ -15,18 +15,20 @@ class AuthController extends Controller
     }
 
 
-    public function auth (LoginRequest $request)
+    public function login(LoginRequest $request)
     {
-        if (Auth::attempt($request->validated()))
-        {
+        // Logika verifikasi login
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            return redirect()->route('dashboard')->with('success', 'Selamat Datang, ' . Auth::user()->name);
+            return redirect()->intended('dashboard');
         }
-                return back()->withErrors([
-            'email' => 'Email atau password tidak valid',]);
-    }
 
+        return back()->withErrors([
+            'email' => 'Email atau password salah.',
+        ]);
+    }
     public function logout(Request $request)
     {
         // Mengakhiri sesi pemgguma
@@ -40,4 +42,3 @@ class AuthController extends Controller
         return redirect()->route('login')->with('success', 'Anda telah keluar dari aplikasi');
     }
 }
-

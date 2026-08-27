@@ -26,7 +26,7 @@
             <div class="col-md-6">
                 <div class="card border-0 shadow-sm p-4 text-center rounded-3">
                     <span class="text-muted small fw-medium">Total Nilai Penjualan Hari Ini</span>
-                    <h2 class="fw-bold my-1" style="color: #4338CA;">
+                    <h2 class="fw-bold my-1" style="color: #18181B;">
                         Rp {{ number_format($ringkasan['total_penjualan'] ?? 0, 0, ',', '.') }}
                     </h2>
                 </div>
@@ -34,7 +34,7 @@
             <div class="col-md-6">
                 <div class="card border-0 shadow-sm p-4 text-center rounded-3">
                     <span class="text-muted small fw-medium">Jumlah Transaksi Hari Ini</span>
-                    <h2 class="fw-bold my-1" style="color: #4338CA;">
+                    <h2 class="fw-bold my-1" style="color: #18181BCA;">
                         {{ $ringkasan['total_transaksi'] ?? 0 }}
                     </h2>
                 </div>
@@ -49,7 +49,7 @@
             <div class="col-md-6">
                 <div class="card border-0 shadow-sm p-4 text-center rounded-3">
                     <span class="text-muted small fw-medium">Total Pembayaran Tunai</span>
-                    <h3 class="fw-bold mt-2 mb-0" style="color: #4338CA;">
+                    <h3 class="fw-bold mt-2 mb-0" style="color: #18181B;">
                         Rp {{ number_format($ringkasan['total_cash'] ?? 0, 0, ',', '.') }}
                     </h3>
                 </div>
@@ -57,7 +57,7 @@
             <div class="col-md-6">
                 <div class="card border-0 shadow-sm p-4 text-center rounded-3">
                     <span class="text-muted small fw-medium">Total Pembayaran Non-Tunai</span>
-                    <h3 class="fw-bold mt-2 mb-0" style="color: #4338CA;">
+                    <h3 class="fw-bold mt-2 mb-0" style="color:#18181B;">
                         Rp {{ number_format($ringkasan['total_non_tunai'] ?? 0, 0, ',', '.') }}
                     </h3>
                 </div>
@@ -77,7 +77,7 @@
                     <h6 class="fw-bold text-dark text-center mb-3">Daftar Produk Stok Rendah</h6>
                     <div class="table-responsive">
                         <table class="table table-borderless align-middle mb-0 text-center">
-                            <thead style="background-color: #EEF2FF; color: #4338CA;">
+                            <thead style="background-color: #EEF2FF; color: #18181B;">
                                 <tr>
                                     <th>#</th>
                                     <th class="text-start">Nama Produk</th>
@@ -113,7 +113,7 @@
                     <h6 class="fw-bold text-dark text-center mb-3">Produk Habis Stok</h6>
                     <div class="table-responsive">
                         <table class="table table-borderless align-middle mb-0 text-center">
-                            <thead style="background-color: #EEF2FF; color: #4338CA;">
+                            <thead style="background-color: #EEF2FF; color: #18181B;">
                                 <tr>
                                     <th>#</th>
                                     <th class="text-start">Nama Produk</th>
@@ -152,7 +152,7 @@
         <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
             <div class="table-responsive">
                 <table class="table table-hover align-middle mb-0">
-                    <thead style="background-color: #EEF2FF; color: #4338CA;">
+                    <thead style="background-color: #EEF2FF; color: #18181B;">
                         <tr>
                             <th class="ps-4">Nama</th>
                             <th class="text-center">Stok</th>
@@ -164,7 +164,7 @@
                             <tr>
                                 <td class="ps-4 fw-semibold text-dark">{{ $produk->nama }}</td>
                                 <td class="text-center text-muted">{{ $produk->stok }}</td>
-                                <td class="text-center fw-bold" style="color: #4338CA;">{{ $produk->total_terjual }}</td>
+                                <td class="text-center fw-bold" style="color: #18181B;">{{ $produk->total_terjual }}</td>
                             </tr>
                         @empty
                             <tr>

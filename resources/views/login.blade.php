@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -131,47 +132,49 @@
         }
     </style>
 </head>
+
 <body>
 
-  <div class="login-card">
-    <h2 class="login-title">Login POS</h2>
+    <div class="login-card">
+        <h2 class="login-title">Login POS</h2>
 
-    <!-- Pesan error validasi Laravel -->
-    @if ($errors->any())
-        <div class="alert-error">
-            {{ $errors->first() }}
-        </div>
-    @endif
+        <!-- Pesan error validasi Laravel -->
+        @if ($errors->any())
+            <div class="alert-error">
+                {{ $errors->first() }}
+            </div>
+        @endif
 
-    <form action="{{ route('login') }}" method="POST">
-      @csrf
-      
-      <!-- Field Email -->
-      <div class="form-group">
-        <label for="email">Email address</label>
-        <div class="input-wrapper">
-          <i class="fa-regular fa-envelope"></i>
-          <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="contoh@email.com" required autofocus>
-        </div>
-      </div>
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
 
-      <!-- Field Password -->
-      <div class="form-group">
-        <label for="password">Password</label>
-        <div class="input-wrapper">
-          <i class="fa-solid fa-lock"></i>
-          <input type="password" name="password" id="password" placeholder="••••••••" required>
-        </div>
-      </div>
+            <!-- Field Email -->
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" name="email" id="email" value="{{ old('email') }}"
+                        placeholder="contoh@email.com" required autofocus>
+                </div>
+            </div>
 
-      <a href="#" class="forgot-password">Lupa kata sandi?</a>
+            <!-- Field Password -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="password" id="password" placeholder="password" required>
+                </div>
+            </div>
 
-      <button type="submit" class="btn-submit">
-        Submit
-        <i class="fa-solid fa-arrow-right"></i>
-      </button>
-    </form>
-  </div>
+
+            <button type="submit" class="btn-submit">
+                Submit
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </form>
+    </div>
 
 </body>
+
 </html>

@@ -15,15 +15,15 @@
                        href="{{ route('dashboard') }}">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white {{ Request::is('admin/users*') ? 'fw-bold border-bottom border-2 border-white' : 'opacity-75' }}"
+                    <a class="nav-link text-white {{ Request::is('admin/users') ? 'fw-bold border-bottom border-2 border-white' : 'opacity-75' }}"
                         href="{{ route('admin.users') }}">User</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white {{ Request::is('admin/produk*') ? 'fw-bold border-bottom border-2 border-white' : 'opacity-75' }}" 
+                    <a class="nav-link text-white {{ Request::is('admin/produk') ? 'fw-bold border-bottom border-2 border-white' : 'opacity-75' }}" 
                        href="{{ route('admin.produk.index') }}">Produk</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white {{ Request::is('admin/penjualan*') ? 'fw-bold border-bottom border-2 border-white' : 'opacity-75' }}" 
+                    <a class="nav-link text-white {{ Request::is('admin/penjualan') ? 'fw-bold border-bottom border-2 border-white' : 'opacity-75' }}" 
                        href="{{ route('admin.penjualan.index') }}">Penjualan</a>
                 </li>
             </ul>

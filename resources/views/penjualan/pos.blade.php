@@ -28,7 +28,7 @@
                 <div class="card-body" style="max-height:70vh; overflow:auto">
                     <div class="mb-3">
                         {{-- Perbaikan 1: Penambahan prefix admin. pada pencarian --}}
-                        <form method="GET" action="{{ route('admin.penjualan.create') }}">
+                        <form method="GET" action="{{ route('penjualan.create') }}">
                             <input type="text" name="search" value="{{ request('search') }}" class="form-control"
                                 placeholder="Cari produk..." onkeyup="this.form.submit()">
                         </form>
@@ -36,7 +36,7 @@
 
                     @foreach ($products as $product)
                         {{-- Perbaikan 2: Penambahan prefix admin. pada itempenjualan.store --}}
-                        <form method="POST" action="{{ route('admin.itempenjualan.store') }}" class="row mb-2">
+                        <form method="POST" action="{{ route('itempenjualan.store') }}" class="row mb-2">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
 
@@ -98,7 +98,7 @@
                                 <td>Rp {{ number_format($item->produk->harga_jual, 0, ',', '.') }}</td>
                                 <td>
                                     {{-- Perbaikan 3: Penambahan prefix admin. pada itempenjualan.update --}}
-                                    <form method="POST" action="{{ route('admin.itempenjualan.update', $item->id) }}">
+                                    <form method="POST" action="{{ route('itempenjualan.update', $item->id) }}">
                                         @csrf @method('PUT')
                                         <input type="number" name="quantity" value="{{ $item->kuantitas }}"
                                             class="form-control form-control-sm">
@@ -108,7 +108,7 @@
                                 <td>
                                     @can('delete', $item)
                                         {{-- Perbaikan 4: Penambahan prefix admin. pada itempenjualan.destroy --}}
-                                        <form method="POST" action="{{ route('admin.itempenjualan.destroy', $item->id) }}">
+                                        <form method="POST" action="{{ route('itempenjualan.destroy', $item->id) }}">
                                             @csrf @method('DELETE')
                                             <button class="btn btn-danger btn-sm">Hapus</button>
                                         </form>
@@ -128,7 +128,7 @@
                     <strong>Total: Rp {{ number_format($sale->total_pembayaran, 0, ',', '.') }}</strong>
 
                     {{-- Perbaikan 5: Penambahan prefix admin. pada penjualan.update --}}
-                    <form method="POST" action="{{ route('admin.penjualan.update', $sale->id) }}" class="mt-2">
+                    <form method="POST" action="{{ route('penjualan.update', $sale->id) }}" class="mt-2">
                         @csrf
                         @method('PUT')
                         <select name="payment_method" class="form-select mb-2">
@@ -145,7 +145,7 @@
 
                     @can('delete', $sale)
                         {{-- Perbaikan 6: Penambahan prefix admin. pada penjualan.destroy --}}
-                        <form action="{{ route('admin.penjualan.destroy', $sale->id) }}" 
+                        <form action="{{ route('penjualan.destroy', $sale->id) }}" 
                             method="POST"
                             onsubmit="return confirm('Yakin ingin membatalkan transaksi?')">
                             @csrf

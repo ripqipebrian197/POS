@@ -2,15 +2,15 @@
 
 @if (!empty($produk->foto))
     <div class="mb-2">
-        <label>Foto Saat Ini</label><br>
+        <label class="form-label">Foto Saat Ini</label><br>
         <img src="{{ asset('storage/' . $produk->foto) }}" width="150" class="img-thumbnail">
     </div>
 @endif
 
-<div class="row">
-    <div class="col">
+<div class="row mb-3">
+    <div class="col-md-6">
         <div>
-            <label>Gambar</label>
+            <label class="form-label">Gambar</label>
             <input type="file" name="foto" onchange="previewImage(this)"
                 class="form-control @error('foto') is-invalid @enderror">
             @error('foto')
@@ -20,16 +20,34 @@
             @enderror
         </div>
     </div>
-    <div class="col">
-        <div class="mb-2">
-            <label>Preview Foto</label><br>
+    <div class="col-md-6">
+        <div>
+            <label class="form-label">Preview Foto</label><br>
             <img id="preview" class="img-thumbnail mt-2" style="display:none" width="150">
         </div>
     </div>
 </div>
 
-<div>
-    <label>Nama Produk</label><br>
+<!-- Dropdown Jenis Produk -->
+<div class="mb-3">
+    <label class="form-label">Jenis Produk</label>
+    <select name="jenis_id" class="form-select @error('jenis_id') is-invalid @enderror">
+        <option value="">-- Pilih Jenis Produk --</option>
+        @foreach ($jenis as $item)
+            <option value="{{ $item->id }}" {{ old('jenis_id', $produk->jenis_id ?? '') == $item->id ? 'selected' : '' }}>
+                {{ $item->nama_jenis ?? $item->nama }}
+            </option>
+        @endforeach
+    </select>
+    @error('jenis_id')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+    @enderror
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Nama Produk</label>
     <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
         value="{{ old('name', $produk->nama ?? '') }}">
     @error('name')
@@ -39,8 +57,8 @@
     @enderror
 </div>
 
-<div>
-    <label>Harga Beli</label><br>
+<div class="mb-3">
+    <label class="form-label">Harga Beli</label>
     <input type="number" name="purchase_price" class="form-control @error('purchase_price') is-invalid @enderror"
         value="{{ old('purchase_price', $produk->harga_beli ?? '') }}">
     @error('purchase_price')
@@ -50,8 +68,8 @@
     @enderror
 </div>
 
-<div>
-    <label>Harga Jual</label><br>
+<div class="mb-3">
+    <label class="form-label">Harga Jual</label>
     <input type="number" name="selling_price" class="form-control @error('selling_price') is-invalid @enderror"
         value="{{ old('selling_price', $produk->harga_jual ?? '') }}">
     @error('selling_price')
@@ -61,8 +79,8 @@
     @enderror
 </div>
 
-<div>
-    <label>Stok</label><br>
+<div class="mb-3">
+    <label class="form-label">Stok</label>
     <input type="number" name="stock" class="form-control @error('stock') is-invalid @enderror"
         value="{{ old('stock', $produk->stok ?? '') }}">
     @error('stock')
@@ -72,8 +90,10 @@
     @enderror
 </div>
 
-<button type="submit" class="btn btn-success">Simpan</button>
-<a href="{{ route('admin.produk.index') }}" class="btn btn-secondary mt-3">Kembali</a>
+<div class="mt-4">
+    <button type="submit" class="btn btn-success">Simpan</button>
+    <a href="{{ route('produk.index') }}" class="btn btn-secondary">Kembali</a>
+</div>
 
 <script>
     function previewImage(input) {

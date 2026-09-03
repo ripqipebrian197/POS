@@ -132,7 +132,7 @@ class PenjualanController extends Controller
         });
 
         return redirect()
-            ->route('admin.penjualan.index')
+            ->route('penjualan.index')
             ->with('success', 'Transaksi berhasil diselesaikan');
     }
     /**
@@ -161,7 +161,7 @@ class PenjualanController extends Controller
             $penjualan->delete();
         });
         return redirect()
-            ->route('admin.penjualan.index')
+            ->route('penjualan.index')
             ->with('success', 'Transaksi berhasil dibatalkan');
     }
 }

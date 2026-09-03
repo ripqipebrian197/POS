@@ -22,7 +22,7 @@
                 <p class="text-muted mb-0">Kelola inventaris dan kelola data barang Anda di sini.</p>
             </div>
             @can('create', App\Models\Produk::class)
-                <a href="{{ route('admin.produk.create') }}" class="btn btn-primary d-flex align-items-center gap-2 shadow-sm">
+                <a href="{{ route('produk.create') }}" class="btn btn-primary d-flex align-items-center gap-2 shadow-sm">
                     <i class="bi bi-plus-lg"></i> Tambah Produk
                 </a>
             @endcan
@@ -33,7 +33,7 @@
             <div class="card-body p-4">
 
                 {{-- Search Bar --}}
-                <form action="{{ route('admin.produk.index') }}" method="GET" class="mb-4">
+                <form action="{{ route('produk.index') }}" method="GET" class="mb-4">
                     <div class="row g-2">
                         <div class="col-md-6 col-lg-4 ms-auto">
                             <div class="input-group">
@@ -86,13 +86,13 @@
                                     <td class="text-end">
                                         <div class="d-inline-flex gap-1">
                                             @can('update', $product)
-                                                <a href="{{ route('admin.produk.edit', $product) }}"
+                                                <a href="{{ route('produk.edit', $product) }}"
                                                     class="btn btn-sm btn-outline-warning" title="Edit">
                                                     Edit
                                                 </a>
                                             @endcan
 
-                                            <form action="{{ route('admin.produk.destroy', $product) }}" method="POST"
+                                            <form action="{{ route('produk.destroy', $product) }}" method="POST"
                                                 class="d-inline">
                                                 @csrf
                                                 @method('DELETE')

@@ -25,13 +25,13 @@
     {{-- Header & Tombol Tambah --}}
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="h4 mb-0">Halaman Penjualan</h2>
-        <a href="{{ route('admin.penjualan.create') }}" class="btn btn-primary btn-sm">
+        <a href="{{ route('penjualan.create') }}" class="btn btn-primary btn-sm">
             + Transaksi Baru
         </a>
     </div>
 
     {{-- Form Pencarian --}}
-    <form action="{{ route('admin.penjualan.index') }}" method="GET" class="mb-3">
+    <form action="{{ route('penjualan.index') }}" method="GET" class="mb-3">
         <div class="row">
             <div class="col-md-4 ms-auto">
                 <div class="input-group input-group-sm">
@@ -78,7 +78,7 @@
                             @endif
                         </td>
                         <td class="text-center">
-                            <a href="{{ route('admin.penjualan.show', $sale->id) }}" class="btn btn-sm btn-info text-white">Detail</a>
+                            <a href="{{ route('penjualan.show', $sale->id) }}" class="btn btn-sm btn-info text-white">Detail</a>
                         </td>
                     </tr>
                 @empty

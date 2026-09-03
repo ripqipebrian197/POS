@@ -5,7 +5,7 @@
 @section('content')
 <h4>Edit Produk</h4>
 
-<form action="{{ route('admin.produk.update', $produk) }}"
+<form action="{{ route('produk.update', $produk) }}"
       method="POST"
       enctype="multipart/form-data">
     @csrf

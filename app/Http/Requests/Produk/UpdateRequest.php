@@ -23,6 +23,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
 {
     return [
+        'jenis_id' => 'required|exists:jenis,id',
         'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         'name' => 'required|string|max:255',
         'purchase_price' => 'required|integer|min:0',

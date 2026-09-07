@@ -13,6 +13,6 @@ class Jenis extends Model
 
     // Disesuaikan dengan nama kolom di tabel database
     protected $fillable = [
-        'nama',
+        'nama_jenis',
     ];
 }

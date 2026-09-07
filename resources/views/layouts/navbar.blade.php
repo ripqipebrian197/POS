@@ -49,7 +49,7 @@
     <!-- Brand Logo -->
     <a class="navbar-brand text-primary fw-bold fs-4" href="#">
       <i class="bi bi-shop me-2"></i>
-      <span>POS <span class="text-primary">Fashion</span></span>
+      <span>POS <span class="text-primary"></span></span>
     </a>
 
     <!-- Hamburger Button (Mobile) -->

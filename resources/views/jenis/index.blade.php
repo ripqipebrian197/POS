@@ -77,7 +77,7 @@
                             {{ method_exists($jenis, 'firstItem') ? $jenis->firstItem() + $loop->index : $loop->iteration }}
                         </td>
                         <td class="fw-semibold text-dark">
-                            {{ $item->nama }}
+                            {{ $item->nama_jenis}}
                         </td>
                         <td class="text-center pe-4">
                             <div class="d-inline-flex align-items-center gap-1">

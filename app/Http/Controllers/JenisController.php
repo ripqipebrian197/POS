@@ -16,7 +16,7 @@ class JenisController extends Controller
         $keyword = $request->input('search');
 
         $jenis = Jenis::when($keyword, function ($query) use ($keyword) {
-                $query->where('nama', 'like', '%' . $keyword . '%');
+                $query->where('nama_jenis', 'like', '%' . $keyword . '%');
             })
             ->latest()
             ->paginate(10)
@@ -39,11 +39,11 @@ class JenisController extends Controller
         $this->authorize('create', Jenis::class);
 
         $request->validate([
-            'nama_jenis' => 'required|string|max:255|unique:jenis,nama',
+            'nama_jenis' => 'required|string|max:255|unique:jenis,nama_jenis',
         ]);
 
         Jenis::create([
-            'nama' => $request->nama_jenis,
+            'nama_jenis' => $request->nama_jenis,
         ]);
 
         return redirect()->route('jenis.index')->with('success', 'Jenis berhasil ditambahkan.');
@@ -61,25 +61,25 @@ class JenisController extends Controller
         $this->authorize('update', $jenis);
 
         $request->validate([
-            'nama_jenis' => 'required|string|max:255|unique:jenis,nama,' . $jenis->id,
+            'nama_jenis' => 'required|string|max:255|unique:jenis,nama_jenis,' . $jenis->id,
         ]);
 
         $jenis->update([
-            'nama' => $request->nama_jenis,
+            'nama_jenis' => $request->nama_jenis,
         ]);
 
         return redirect()->route('jenis.index')->with('success', 'Jenis berhasil diupdate.');
     }
 
     public function destroy(Jenis $jenis)
-{
-    $this->authorize('delete', $jenis);
+    {
+        $this->authorize('delete', $jenis);
 
-    try {
-        $jenis->delete();
-        return redirect()->route('jenis.index')->with('success', 'Jenis berhasil dihapus.');
-    } catch (QueryException $e) {
-        return redirect()->route('jenis.index')->with('error', 'Gagal menghapus! Data jenis ini sedang digunakan oleh data produk.');
+        try {
+            $jenis->delete();
+            return redirect()->route('jenis.index')->with('success', 'Jenis berhasil dihapus.');
+        } catch (QueryException $e) {
+            return redirect()->route('jenis.index')->with('error', 'Gagal menghapus! Data jenis ini sedang digunakan oleh data produk.');
+        }
     }
-}
 }

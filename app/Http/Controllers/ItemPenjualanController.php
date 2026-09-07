@@ -36,7 +36,7 @@ class ItemPenjualanController extends Controller
 
         if ($product->stok < $request->quantity) {
             return redirect()
-                ->route('admin.penjualan.create')
+                ->route('penjualan.create')
                 ->with('error', 'Produk stok tidak mencukupi');
         }
 

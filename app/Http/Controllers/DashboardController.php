@@ -26,4 +26,10 @@ class DashboardController extends Controller
             'produkStokHabis' => $this->stokService->produkStokHabis(),
         ]);
     }
+
+
+    public function about()
+    {
+        return view('about');
+    }
 }

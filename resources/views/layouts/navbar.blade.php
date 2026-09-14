@@ -52,7 +52,7 @@
         <!-- Brand Logo -->
         <a class="navbar-brand text-primary fw-bold fs-4" href="#">
             <i class="bi bi-shop me-2"></i>
-            <span>POS <span class="text-primary"></span></span>
+            <span>POS MINUMAN SEGAR<span class="text-primary"></span></span>
         </a>
 
         <!-- Hamburger Button (Mobile) -->
@@ -89,6 +89,10 @@
                         <a class="nav-link {{ Request::is('penjualan*') ? 'active' : '' }}"
                             href="{{ route('penjualan.index') }}">Penjualan</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('about') ? 'active' : '' }}"
+                            href="{{ route('about') }}">About</a>
+                    </li> 
                 </ul>
 
                 <!-- Tombol Logout -->

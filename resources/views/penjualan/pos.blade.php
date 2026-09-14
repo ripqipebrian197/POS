@@ -138,7 +138,6 @@
                             <option value="QRIS">QRIS</option>
                         </select>
  
-                        {{-- BARU: muncul hanya kalau Cash dipilih --}}
                         <div id="cash-fields" class="mb-2" style="display:none;">
                             <label class="form-label">Uang Dibayar</label>
                             <input type="text" id="uang_dibayar_display" class="form-control mb-2" placeholder="Rp 0">
@@ -175,7 +174,6 @@
  
     </div>
  
-    {{-- ================= SCRIPT: UANG DIBAYAR & KEMBALIAN ================= --}}
     <script>
         // Total belanja diambil dari server, bukan dihardcode
         const totalBelanja = {{ $sale->total_pembayaran }};
